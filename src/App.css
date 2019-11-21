@@ -1,22 +1,44 @@
 .App {
   text-align: center;
+  display: grid;
+  gap: 0.5em;
 }
 
-.App-logo {
-  height: 40vmin;
+.icon{
+  font-size: 2em;
 }
+
+
+@keyframes magnifying {
+  0%   { font-size: 2em}
+  75%  { font-size: 3em}
+  100% { font-size: 2.6em}
+}
+.icon:hover{
+  transition-duration: 0.5s;
+  font-size: 2.6em;
+  /*ogarnąć animacje bo się nie odpala na hover
+  animation: magnifying 1s linear forwards;
+  */
+}
+
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+.App-header>span{
+  font-size: calc(15px + 2vmin);
+  font-weight: 700;
+  color: rgb(4, 219, 165);
+  font-family: 'Play', sans-serif;
+  padding-left: 0.2em;
+
 }
+
+
