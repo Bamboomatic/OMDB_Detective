@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/OMDB_Detective/static/css/main.98985b22.chunk.css",
-    "main.js": "/OMDB_Detective/static/js/main.ab0e4a6d.chunk.js",
-    "main.js.map": "/OMDB_Detective/static/js/main.ab0e4a6d.chunk.js.map",
+    "main.css": "/OMDB_Detective/static/css/main.1d4ee32e.chunk.css",
+    "main.js": "/OMDB_Detective/static/js/main.62f2f047.chunk.js",
+    "main.js.map": "/OMDB_Detective/static/js/main.62f2f047.chunk.js.map",
     "runtime-main.js": "/OMDB_Detective/static/js/runtime-main.f8cae9e4.js",
     "runtime-main.js.map": "/OMDB_Detective/static/js/runtime-main.f8cae9e4.js.map",
     "static/js/2.484e3ed5.chunk.js": "/OMDB_Detective/static/js/2.484e3ed5.chunk.js",
     "static/js/2.484e3ed5.chunk.js.map": "/OMDB_Detective/static/js/2.484e3ed5.chunk.js.map",
     "index.html": "/OMDB_Detective/index.html",
-    "precache-manifest.b7d2c95587f9d3f1eef0973c1c28d822.js": "/OMDB_Detective/precache-manifest.b7d2c95587f9d3f1eef0973c1c28d822.js",
+    "precache-manifest.8f9949425f49bf77515f697f6b2dfd65.js": "/OMDB_Detective/precache-manifest.8f9949425f49bf77515f697f6b2dfd65.js",
     "service-worker.js": "/OMDB_Detective/service-worker.js",
-    "static/css/main.98985b22.chunk.css.map": "/OMDB_Detective/static/css/main.98985b22.chunk.css.map"
+    "static/css/main.1d4ee32e.chunk.css.map": "/OMDB_Detective/static/css/main.1d4ee32e.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.f8cae9e4.js",
     "static/js/2.484e3ed5.chunk.js",
-    "static/css/main.98985b22.chunk.css",
-    "static/js/main.ab0e4a6d.chunk.js"
+    "static/css/main.1d4ee32e.chunk.css",
+    "static/js/main.62f2f047.chunk.js"
   ]
 }
