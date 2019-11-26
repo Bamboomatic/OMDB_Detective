@@ -1,88 +1,227 @@
 .App {
-  text-align: center;
-  display: grid;
-  gap: 0.5em;
+    text-align: center;
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "header" "searchbar" "movies" "footer";
 }
 
-.icon{
-  font-size: 2em;
+.icon {
+    font-size: 2em;
 }
 
-
-@keyframes magnifying {
-  0%   { font-size: 2em}
-  75%  { font-size: 3em}
-  100% { font-size: 2.6em}
-}
-.icon:hover{
-  transition-duration: 0.5s;
-  font-size: 2.6em;
-  color: cornsilk;
-  /*ogarnąć animacje bo się nie odpala na hover
-  animation: magnifying 1s linear forwards;
-  */
+.icon-bottom {
+    padding-right: 0.5em;
 }
 
+.icon:hover {
+    transition-duration: 0.5s;
+    font-size: 2.8em;
+    color: cornsilk;
+}
 
 .App-header {
-  background-color: #282c34;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+    background-color: #282c34;
+    color: rgb(4, 219, 165);
+    text-shadow: 2px 2px rgba(7, 124, 118, 0.63);
+    min-height: 10vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-.App-header>span{
-  font-size: calc(15px + 2vmin);
-  font-weight: 700;
-  color: rgb(4, 219, 165);
-  font-family: 'Play', sans-serif;
-  text-shadow: 2px 2px rgba(7, 124, 118, 0.63);
-  padding-left: 1em;
-  padding-right: 1em;
+.App-header>span {
+    font-size: calc(15px + 2vmin);
+    font-weight: 700;
+    font-family: 'Play', sans-serif;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
-.search-bar{
-  position: sticky;
-  display: flex;
-  padding: 0.5em;
-  top: 0%;
+.search-bar {
+    position: sticky;
+    display: flex;
+    padding: 0.5em;
+    top: 0%;
 }
 
-.search-bar-input{
-  display: block;
-  width: 95%;
-  padding-left: 0.5em;
-  margin-left: 1%;
+.search-bar-input {
+    display: block;
+    width: 95%;
+    padding-left: 0.5em;
+    margin-left: 1%;
 }
 
-.movie{
-  display: flex;
-  padding: 1em;
-  margin: 1em;
-  box-shadow: rgb(220, 220, 220) 1px 3px 4px;
+.movie {
+    display: flex;
+    padding: 1em;
+    margin: 1em;
+    max-height: 210px;
+    box-shadow: rgb(220, 220, 220) 1px 3px 4px;
+}
+
+.fav-movie {
+    display: flex;
+    flex: 0 1 40%;
+    padding: 1em;
+    margin: 1em;
+    box-shadow: rgb(220, 220, 220) 1px 3px 4px;
 }
 
 .movie:nth-child(even) {
-  flex-direction: row-reverse;
+    flex-direction: row-reverse;
 }
 
-.movie-poster{
-  width: 140px;
-  height: 210px
+.movie-poster {
+    width: 140px;
+    height: 210px
 }
 
-.movie-description{
-padding: 0.5em;
-flex: 1;
+.fav-movie-poster {
+    width: 140px;
+    height: 210px
 }
 
-.wishlistOn{
-  display: none;
+.movie-description {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    flex: 1;
 }
 
-.wishlistOff{
-  display: none;
+.movie-description>h2 {
+    margin: 0px 2px;
+    font-size: 1em;
 }
 
+.movie-description>h4 {
+    margin: 0px 2px;
+    font-size: 0.8em;
+}
+
+.movie-description>button {
+    position: relative;
+    background-color: #282c34;
+    color: cornsilk;
+    border: 1px solid rgba(7, 124, 118, 0.63);
+    margin: 2px;
+    border-radius: 5%;
+}
+
+.movie-description>button:hover {
+    background-color: #40444d;
+    color: cornsilk;
+}
+
+.fav-movie-description {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    flex: 1;
+}
+
+.fav-movie-description>h3 {
+    margin: 5px 2px;
+    font-size: 1.3em;
+}
+
+.fav-movie-description>h5>b {
+    font-size: 1.1em;
+}
+
+.fav-movie-description>h5 {
+    margin: 5px 2px;
+}
+
+.fav-movie-description>button {
+    background-color: #282c34;
+    color: cornsilk;
+    border: 1px solid rgba(7, 124, 118, 0.63);
+    margin: 2px;
+}
+
+.fav-movie-description>button:hover {
+    background-color: #798192;
+    color: cornsilk;
+}
+
+.wishlistOn {
+    display: none;
+}
+
+.wishlistOff {
+    display: none;
+}
+
+.moreButton {
+    grid-area: footer;
+    font-size: calc(5px + 2vmin);
+    font-weight: 700;
+    color: rgb(4, 219, 165);
+    font-family: 'Play', sans-serif;
+    text-shadow: 2px 2px rgba(7, 124, 118, 0.63);
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: #282c34;
+    min-height: 5vh;
+}
+
+.tooltip:hover:after {
+    background: rgba(0, 0, 0, .8);
+    border-radius: 5px;
+    bottom: -28px;
+    color: #fff;
+    content: "Click HEART to see your wishlist";
+    display: block;
+    left: -80%;
+    padding: 5px 15px;
+    position: absolute;
+    white-space: nowrap;
+    z-index: 98
+}
+
+@media screen and (min-width: 640px) {
+    .App {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: "header header" "searchbar searchbar" "movies movies" "footer footer";
+    }
+    .App-header {
+        grid-area: header;
+    }
+    .search-bar {
+        grid-area: searchbar;
+    }
+    .movies {
+        grid-area: movies;
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        max-width: 99vw;
+    }
+    .movie {
+        overflow-wrap: normal;
+        max-width: 250px;
+    }
+    .movie:nth-child(odd) {
+        flex-direction: row-reverse;
+    }
+    .movie-description>h2 {
+        overflow-wrap: break-word;
+        margin: 0px 2px;
+        max-width: 110px;
+        font-size: 1em;
+    }
+    .movie-description>h2 {
+        margin: 0px 2px;
+    }
+    .footer {
+        grid-area: footer;
+    }
+    .wishlistOn {
+        display: none;
+    }
+    .wishlistOff {
+        display: none;
+    }
+}
