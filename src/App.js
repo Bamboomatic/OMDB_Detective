@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faHeart } from '@fortawesome/free-solid-svg-icons';
 import MovieItem from './MovieItem.js';
 import Wishlist from './Wishlist.js'
 import InfiniteScroll from 'react-infinite-scroller';
@@ -19,7 +19,8 @@ class App extends Component {
       movies: [],
       favs: [],
       apikey: 'baec7aa6',
-      cookies: {} 
+      cookies: {},
+      wishlistOn: false, 
     }
     this.searchHandler= this.searchHandler.bind(this);
     this.updateInput = this.updateInput.bind(this);
@@ -46,11 +47,13 @@ class App extends Component {
       e.preventDefault()
       Cookies.set(e.target.id, e.target.id, { expires: 7 })
       this.generateWishlist()
+      console.log(this.state.favs) 
+      console.log(this.state.movies) 
     }
     favDelHandler(e){
       e.preventDefault()
-      Cookies.remove(e.target.id)
       console.log(e.target.id)
+      Cookies.remove(e.target.id)
       this.generateWishlist()
     }
 
@@ -62,9 +65,8 @@ class App extends Component {
             const result = movieSearchResults.Search;
             let movies = []
             this.setState({page: 2})
-            console.log(movieSearchResults)
-            result.forEach((movie) => {
-              const movieItem = <MovieItem key={movie.imdbID} movie={movie} favAddHandler={this.favAddHandler} favDelHandler={this.favDelAddHandler}/>
+              result.forEach((movie) => {
+              const movieItem = <MovieItem key={movie.imdbID} movie={movie} favAddHandler={this.favAddHandler} favDelHandler={this.favDelHandler}/>
               movies.push(movieItem)
               })    
             this.setState({movies, numberOfPages: Math.ceil(movieSearchResults.totalResults/10)})     
@@ -77,8 +79,8 @@ class App extends Component {
     this.state.page < this.state.numberOfPages+1 ? this.nextPageFunc() : console.log('no more movies')
   }
 
+  //loading next pages from API
   nextPageFunc() {
-    
     fetch(`http://www.omdbapi.com/?apikey=${this.state.apikey}&s=${this.state.movieTitle}&page=${this.state.page}`)
         .then(resp => resp.json())
         .then(movieSearchResults => {
@@ -96,30 +98,24 @@ class App extends Component {
         .catch(err => console.error(err));
 }
 
-
+// generating wishlist based on movie imdb ID number stored in cookies
 generateWishlist() {
-  let favs = [];
-  console.log(favs);
+  this.setState({favs: []});
  (Object.values(Cookies.get())).forEach(movieID =>
-    
       fetch(`http://www.omdbapi.com/?apikey=${this.state.apikey}&i=${movieID}`)
       .then(resp => resp.json())
       .then(fav => {
-        console.log(fav)
-        
-        const favItem = <Wishlist key={movieID} fav={fav} favAddHandler={this.favAddHandler} favDelHandler={this.favDelAddHandler}/>
-          favs.push(favItem)
-        this.setState({favs: favs.concat(favs)})  
-      })
-      .catch(err => console.error(err))
+        let favItem = <Wishlist key={movieID} fav={fav} favAddHandler={this.favAddHandler} favDelHandler={this.favDelHandler}/>
+          this.setState({favs: this.state.favs.concat(favItem)})
+        })
+      .catch(err => console.error(err)),
   )
-  
-
-  
 }
- 
 
-
+wishlistVisibilityHandler(){
+  this.setState({wishlistOn : !this.state.wishlistOn})
+  this.generateWishlist()
+}
 
   render(){
     
@@ -129,6 +125,7 @@ generateWishlist() {
         <header className="App-header">
           <FontAwesomeIcon className="icon" icon={faSearch} size="4x" />
           <span>OMDb Detective</span>
+          <FontAwesomeIcon className="icon" icon={faHeart} size="4x" onClick={this.wishlistVisibilityHandler.bind(this)}/>
         </header>
 
        
@@ -138,7 +135,7 @@ generateWishlist() {
           </form>
       
 
-        <main className="movies">
+        <main className={this.state.wishlistOn ? "movies wishlistOn" : "movies wishlistOf"}>
           {this.state.movies}
 
           {/* // infinite scroll to be implemented instead of next results button*/}
@@ -146,7 +143,7 @@ generateWishlist() {
           <button type="button" onClick={this.loadMoreHandler}><FontAwesomeIcon className="icon" icon={faSearch} />Load next 10</button>
         </main>
 
-        <section className="movies">
+        <section className={this.state.wishlistOn ? "movies wishlistOf" : "movies wishlistOn"}>
           <h1>my WISHLIST</h1>
           {this.state.favs}
 

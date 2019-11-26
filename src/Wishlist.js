@@ -9,7 +9,6 @@ class Wishlist extends React.Component {
                         <h1>{this.props.fav.Title}</h1>
                         <h4>{this.props.fav.Year}</h4>
                         <h5>{this.props.fav.Plot}</h5>
-                        <button id={this.props.fav.imdbID} type="button" onClick={this.props.favAddHandler}>+</button>
                         <button id={this.props.fav.imdbID} type="button" onClick={this.props.favDelHandler}>-</button>
                     </div>
                 </div>
