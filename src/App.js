@@ -60,7 +60,7 @@ class App extends Component {
 
   //function for get data from API
   searchMovie(movieTitle) {
-    fetch(`http://www.omdbapi.com/?apikey=${this.state.apikey}&s=${movieTitle}`)
+    fetch(`https://www.omdbapi.com/?apikey=${this.state.apikey}&s=${movieTitle}`)
       .then(resp => resp.json())
       .then(movieSearchResults => {
         const result = movieSearchResults.Search;
@@ -82,7 +82,7 @@ class App extends Component {
 
   //loading next pages from API
   nextPageFunc() {
-    fetch(`http://www.omdbapi.com/?apikey=${this.state.apikey}&s=${this.state.movieTitle}&page=${this.state.page}`)
+    fetch(`https://www.omdbapi.com/?apikey=${this.state.apikey}&s=${this.state.movieTitle}&page=${this.state.page}`)
       .then(resp => resp.json())
       .then(movieSearchResults => {
         console.log('click')
@@ -103,7 +103,7 @@ class App extends Component {
   generateWishlist() {
     this.setState({ favs: [] });
     (Object.values(Cookies.get())).forEach(movieID =>
-      fetch(`http://www.omdbapi.com/?apikey=${this.state.apikey}&i=${movieID}`)
+      fetch(`https://www.omdbapi.com/?apikey=${this.state.apikey}&i=${movieID}`)
         .then(resp => resp.json())
         .then(fav => {
           console.log(fav)
